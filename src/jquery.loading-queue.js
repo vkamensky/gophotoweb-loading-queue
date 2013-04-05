@@ -10,12 +10,23 @@
 		
 		var url = null;
 		
-		$.each(options, function(prefix, size) {
+		if(options) {
 			
-			if(!url || screen.width > size.width && screen.height > size.width) {
-				url = image.data('basePath') + prefix + image.data('fileName');
-			}
-		});
+			$.each(options, function(prefix, size) {
+				
+				if(!url || screen.width > size.width && screen.height > size.width) {
+					url = image.data('basePath') + prefix + image.data('fileName');
+				}
+			});
+			
+		} else if(image.data('src')) {
+			
+			url = image.data('src');
+		
+		} else {
+			
+			url = image.data('basePath') + image.data('fileName');
+		}
 		
 		return url;
 	};
