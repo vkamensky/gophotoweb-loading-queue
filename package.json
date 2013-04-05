@@ -1,0 +1,12 @@
+{
+  "name": "loading-queue",
+  "version": "0.1.0",
+  "description": "Added possibility to loading images one by one.",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "grunt": "0.4.0rc5",
+    "grunt-contrib-clean": "~0.4.0a",
+    "grunt-contrib-uglify": "0.1.1rc6"
+  }
+}
