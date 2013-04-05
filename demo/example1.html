@@ -20,26 +20,24 @@
 
 	<script>
 	
-		$('img').each(function() {
-			
-			$(this).loadingQueue({
-				'small/': {
-					width: 200,
-					height: 200
-				},
-				'medium/': {
-					width: 900,
-					height: 900
-				},
-				'large/': {
-					width: 2000,
-					height: 2000
-				}
-			}).then(function(img) {
-				console.log(img.attr('src') + ' has been loaded.');
-			});
-			
+	
+		$('img').loadingQueue({
+			'small/': {
+				width: 200,
+				height: 200
+			},
+			'medium/': {
+				width: 900,
+				height: 900
+			},
+			'large/': {
+				width: 2000,
+				height: 2000
+			}
+		}).on('loaded', function() {
+			console.log($(this).attr('src') + ' has been loaded.');
 		})
+		
 	</script>
 </body>
 </html>

@@ -29,7 +29,6 @@
 			loading = true;
 			
 			if(!item.image.is('img')) {
-				item.def.reject(item.image);
 				dequeue();
 				return;
 			}
@@ -39,12 +38,12 @@
 			item.image
 				.on('load', function() {
 					
-					item.def.resolve(item.image);
+					item.image.trigger('loaded');
+					
 					dequeue();
 				})
 				.on('error', function() {
 					
-					item.def.reject(item.image);
 					dequeue();
 				})
 				.attr('src', src);
@@ -56,26 +55,25 @@
 		
 	var enqueue = function(image, options) {
 		
-		var def = $.Deferred();
-		
 		queue.push({
-			def: def,
 			image: $(image),
 			options: options
-		});
-				
-		return def.promise();
+		});				
 	};
 		
 	$.fn[pluginName] = function (options) {
 		
-		var def = enqueue($(this), options);
+		$(this).each(function() {
+			
+			enqueue($(this), options);
+			
+			if(!loading) {
+				dequeue();
+			}
+			
+		});		
 		
-		if(!loading) {
-			dequeue();
-		}
-		
-		return def;
+		return this;
 	};
 	
 })(jQuery);
