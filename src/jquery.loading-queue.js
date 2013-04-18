@@ -18,7 +18,7 @@
 				
 				$.each(options, function(prefix, size) {
 					
-					if(!url || screen.width > size.width && screen.height > size.width) {
+					if(!url || screen.width > size.width && screen.height > size.height) {
 						url = image.data('basePath') + prefix + image.data('fileName');
 					}
 				});
